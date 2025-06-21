@@ -16,13 +16,13 @@ A modern Todo application with user authentication built with Express.js, Prisma
 - **Database**: PostgreSQL
 - **ORM**: Prisma
 - **Authentication**: JWT, bcryptjs
-- **Containerization**: Docker, Docker Compose
+- **Containerization**: Docker
 
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (v16 or higher)
-- [Docker](https://www.docker.com/get-started) and [Docker Compose](https://docs.docker.com/compose/install/)
+- [Docker](https://www.docker.com/get-started)
 - [Git](https://git-scm.com/downloads)
 
 ## Installation & Setup
