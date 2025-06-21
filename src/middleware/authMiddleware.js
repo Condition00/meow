@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 function authMiddleware(req, res, next) {
-    const token = req.headers['authorisation']
+    const token = req.headers['authorization']
     if (!token) {
         return res.status(401).json({ message: 'No token provided' });
     }
@@ -10,7 +10,9 @@ function authMiddleware(req, res, next) {
         if (err) {
             return res.status(403).json({ message: 'Failed to authenticate token' });
         }
+        // Set both req.userId and req.user to ensure compatibility
         req.userId = decoded.userId;
+        req.user = { id: decoded.userId };
         next();
     });
 }

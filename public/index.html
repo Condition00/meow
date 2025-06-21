@@ -71,6 +71,12 @@
             }
         }
 
+        .fade-out {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
         .form-group {
             margin-bottom: 1rem;
         }
@@ -525,7 +531,7 @@
 
                 const span = document.createElement('span');
                 span.className = 'todo-text';
-                span.textContent = todo.task;
+                span.textContent = todo.title; // Changed from todo.task to todo.title
 
                 const deleteBtn = document.createElement('button');
                 deleteBtn.className = 'todo-delete';
@@ -560,7 +566,7 @@
                         'Authorization': token
                     },
                     body: JSON.stringify({
-                        task
+                        title: task // Changed from 'task' to 'title' to match backend
                     })
                 });
 
@@ -591,6 +597,12 @@
                 });
 
                 if (!response.ok) {
+                    if (response.status === 401 || response.status === 403) {
+                        // Token expired or invalid
+                        localStorage.removeItem('token');
+                        checkAuth();
+                        return;
+                    }
                     throw new Error('Failed to update todo');
                 }
 
@@ -618,6 +630,12 @@
                 });
 
                 if (!response.ok) {
+                    if (response.status === 401 || response.status === 403) {
+                        // Token expired or invalid
+                        localStorage.removeItem('token');
+                        checkAuth();
+                        return;
+                    }
                     throw new Error('Failed to delete todo');
                 }
 

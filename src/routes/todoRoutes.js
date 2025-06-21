@@ -17,11 +17,11 @@ router.get('/', async (req, res) => {
 
 // Create a new todo
 router.post('/', async (req, res) => {
-    const {task} = req.body;
+    const {title} = req.body;
 
     const todo = await prisma.todo.create({
         data:{
-            task,
+            title,
             userId: req.user.id
         }
     })
