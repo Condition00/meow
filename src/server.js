@@ -24,11 +24,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-//rotes
-
-app.get('/auth', authRoutes);
-app.use('/todos',authMiddleware, todoRoutes);
+// Routes
+app.use('/auth', authRoutes);
+app.use('/todos', authMiddleware, todoRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
