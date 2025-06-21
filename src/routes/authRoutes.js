@@ -20,9 +20,8 @@ router.post('/register', async (req, res) => {
                 username,
                 password: hashedPassword
             }
-    })
-
-    // now we have a user, I add their first todo item    const defaultTodo = `First todo for ${username}`;
+    })    // now we have a user, I add their first todo item
+    const defaultTodo = `First todo for ${username}`;
     await prisma.todo.create({
         data: {
             title: defaultTodo,
